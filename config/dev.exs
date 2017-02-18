@@ -41,3 +41,13 @@ config :corp_hanger, CorpHanger.Repo,
   database: "corp_hanger_dev",
   hostname: "localhost",
   pool_size: 10
+
+
+config :ueberauth, Ueberauth,
+  providers: [
+    eveonline: {Ueberauth.Strategy.EveOnline, []}
+  ]
+
+  config :ueberauth, Ueberauth.Strategy.EveOnline.OAuth,
+    client_id: System.get_env("EVEONLINE_CLIENT_ID"),
+    client_secret: System.get_env("EVEONLINE_CLIENT_SECRET")

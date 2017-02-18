@@ -2,6 +2,7 @@ defmodule CorpHanger.Router do
   use CorpHanger.Web, :router
 
   pipeline :browser do
+    plug Ueberauth
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -17,6 +18,13 @@ defmodule CorpHanger.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+  end
+
+  scope "/auth", CorpHanger do
+    pipe_through :browser
+
+    get "/:provider", AuthController, :request
+    get "/:provider/callback", AuthController, :callback
   end
 
   # Other scopes may use custom stacks.
