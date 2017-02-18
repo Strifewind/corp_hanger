@@ -25,6 +25,8 @@ defmodule CorpHanger.Router do
   scope "/auth", CorpHanger do
     pipe_through :browser
 
+    delete "/logout", AuthController, :delete
+
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
   end

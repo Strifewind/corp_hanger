@@ -52,6 +52,7 @@ defmodule CorpHanger.Web do
       import CorpHanger.Router.Helpers
       import CorpHanger.ErrorHelpers
       import CorpHanger.Gettext
+      import CorpHanger.SessionHelpers
     end
   end
 

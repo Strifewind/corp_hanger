@@ -1,5 +1,7 @@
-<%= if @character do %>
-  <h2><%= @character.name %></h2>
+<%= if signed_in?(@conn) do %>
+  <h2><%= current_character(@conn).name %></h2>
 <% else %>
-  <a href="/auth/eveonline">SSO Auth</a>
+  <p>
+    Please sign in.
+  </p>
 <% end %>
