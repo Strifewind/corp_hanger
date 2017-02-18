@@ -38,7 +38,9 @@ defmodule CorpHanger.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:ueberauth_eveonline, github: "bruce/ueberauth_eveonline"},]
+     {:ueberauth_eveonline, github: "bruce/ueberauth_eveonline"},
+     {:guardian, "~> 0.14.2"},
+    ]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.

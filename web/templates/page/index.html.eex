@@ -1,1 +1,5 @@
-<a href="/auth/eveonline">SSO Auth</a>
+<%= if @character do %>
+  <h2><%= @character.name %></h2>
+<% else %>
+  <a href="/auth/eveonline">SSO Auth</a>
+<% end %>

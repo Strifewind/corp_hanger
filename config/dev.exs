@@ -48,6 +48,13 @@ config :ueberauth, Ueberauth,
     eveonline: {Ueberauth.Strategy.EveOnline, []}
   ]
 
-  config :ueberauth, Ueberauth.Strategy.EveOnline.OAuth,
-    client_id: System.get_env("EVEONLINE_CLIENT_ID"),
-    client_secret: System.get_env("EVEONLINE_CLIENT_SECRET")
+config :ueberauth, Ueberauth.Strategy.EveOnline.OAuth,
+  client_id: System.get_env("EVEONLINE_CLIENT_ID"),
+  client_secret: System.get_env("EVEONLINE_CLIENT_SECRET")
+
+config :guardian, Guardian,
+  issuer: "CorpHanger",
+  ttl: { 30, :days },
+  allowed_drift: 2000,
+  secret_key: "230e33833b3c96ce6dc073206a0de91068ec3a8492cb816e66d88c9b85ca3efa846c6eb1192566ddea6630",
+  serializer: CorpHanger.GuardianSerializer
