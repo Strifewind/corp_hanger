@@ -22,7 +22,17 @@ defmodule CorpHanger.Character do
   def portrait_url(character, size) do
     "http://image.eveonline.com/Character/#{character.eve_id}_#{size}.jpg"
   end
-  
+
+  def corporation_name(character) do
+    ESI.API.Character.corporation_history(character.eve_id)
+    |> ESI.request!
+    |> hd
+    |> Map.get("corporation_id")
+    |> ESI.API.Corporation.corporation
+    |> ESI.request!
+    |> Map.get("corporation_name")
+  end
+
 
   @doc """
   Builds a changeset based on the `struct` and `params`.

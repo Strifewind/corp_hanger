@@ -13,5 +13,9 @@ defmodule CorpHanger.SessionHelpers do
     |> CorpHanger.Character.portrait_url(size)
   end
   
+  def corporation_name(conn) do
+    current_character(conn)
+    |> CorpHanger.Character.corporation_name
+  end
 
 end
