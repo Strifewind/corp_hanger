@@ -1,7 +1,9 @@
 body {
   /* From http://hdscreen.us/wallpaper/Blue_stars_galaxies_artwork_space-NUiL.jpg */
+  background-color: #000;
   background-image: url("/images/galaxies.jpg");
   background-size: cover;
+  background-repeat: no-repeat;
   margin: 0;
   padding: 0;
 }
