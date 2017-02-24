@@ -10,6 +10,7 @@ defmodule CorpHanger.AuthController do
   end
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
     character = Authentication.character(auth)
+    IO.inspect(character)
     conn
     |> put_flash(:info, "Successfully authenticated.")
     |> Guardian.Plug.sign_in(character)

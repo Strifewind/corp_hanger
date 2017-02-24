@@ -19,6 +19,11 @@ defmodule CorpHanger.Character do
       where: t.eve_id == ^eve_id
   end
 
+  def portrait_url(character, size) do
+    "http://image.eveonline.com/Character/#{character.eve_id}_#{size}.jpg"
+  end
+  
+
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """

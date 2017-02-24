@@ -1,4 +1,5 @@
 <%= if signed_in?(@conn) do %>
+  <%= img_tag portrait_url(@conn, 256) %>
   <h2><%= current_character(@conn).name %></h2>
 <% else %>
   <p>

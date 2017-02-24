@@ -8,4 +8,10 @@ defmodule CorpHanger.SessionHelpers do
     !!current_character(conn)
   end
 
+  def portrait_url(conn, size \\ 64) do
+    current_character(conn)
+    |> CorpHanger.Character.portrait_url(size)
+  end
+  
+
 end

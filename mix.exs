@@ -19,7 +19,7 @@ defmodule CorpHanger.Mixfile do
   def application do
     [mod: {CorpHanger, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :ueberauth_eveonline]]
+                    :phoenix_ecto, :postgrex, :ueberauth_eveonline,]]
   end
 
   # Specifies which paths to compile per environment.
@@ -40,6 +40,7 @@ defmodule CorpHanger.Mixfile do
      {:cowboy, "~> 1.0"},
      {:ueberauth_eveonline, github: "bruce/ueberauth_eveonline"},
      {:guardian, "~> 0.14.2"},
+     {:esi, git: "git@github.com:bruce/esi.git"},
     ]
   end
 
