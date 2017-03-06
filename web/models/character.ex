@@ -23,21 +23,29 @@ defmodule CorpHanger.Character do
     from t in query,
       where: t.access_id == ^access_token
   end
-  
+
+  defp incorp_id(character) do
+    ESI.API.Character.corporation_history(character.eve_id)
+    |> ESI.request!
+    |> hd
+    |> Map.get("corporation_id")
+  end
+    
   def portrait_url(character, size) do
     "http://image.eveonline.com/Character/#{character.eve_id}_#{size}.jpg"
   end
 
   def corporation_name(character) do
-    ESI.API.Character.corporation_history(character.eve_id)
-    |> ESI.request!
-    |> hd
-    |> Map.get("corporation_id")
+    character.incorp_id(character)
     |> ESI.API.Corporation.corporation
     |> ESI.request!
     |> Map.get("corporation_name")
   end
 
+  def corporation_img(character, size) do
+    "https://imageserver.eveonline.com/Corporation/#{character.incorp_id}_#{size}.png"
+  end
+  
   def assets(character) do
     ESI.API.Character.assets(character.eve_id, [token: character.access_token])
     |> ESI.stream!
