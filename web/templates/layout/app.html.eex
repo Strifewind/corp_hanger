@@ -22,7 +22,7 @@
             <%= if signed_in?(@conn) do %>
               <%= link "Sign Out", to: auth_path(@conn, :delete), method: :delete %>
             <% else %>
-              <%= link "Sign In", to: auth_path(@conn, :request, "eveonline") %>
+              <%= link "Sign In", to: auth_path(@conn, :request, "eveonline", scope: scopes()) %>
             <% end %>
             </div>
           </div>

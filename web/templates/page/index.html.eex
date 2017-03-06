@@ -2,6 +2,7 @@
   <%= img_tag portrait_url(@conn, 256) %>
   <h2><%= current_character(@conn).name %></h2>
   <h3><%= corporation_name(@conn) %></h3>
+  <div><%= inspect character_assets(@conn) %><div>
 <% else %>
   <p>
     Please sign in.

@@ -19,6 +19,11 @@ defmodule CorpHanger.Character do
       where: t.eve_id == ^eve_id
   end
 
+  def for_access_token(query, access_token) do
+    from t in query,
+      where: t.access_id == ^access_token
+  end
+  
   def portrait_url(character, size) do
     "http://image.eveonline.com/Character/#{character.eve_id}_#{size}.jpg"
   end
@@ -33,7 +38,12 @@ defmodule CorpHanger.Character do
     |> Map.get("corporation_name")
   end
 
-
+  def assets(character) do
+    ESI.API.Character.assets(character.eve_id, [token: character.access_token])
+    |> ESI.stream!
+    |> Enum.to_list
+  end
+  
   @doc """
   Builds a changeset based on the `struct` and `params`.
   """
