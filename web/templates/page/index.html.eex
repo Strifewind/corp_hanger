@@ -3,7 +3,11 @@
   <h2><%= current_character(@conn).name %></h2>
   <h3><%= img_tag corporation_img(@conn) %></h3>
   <h3><%= corporation_name(@conn) %></h3>
-  <div><%= character_assets(@conn) %><div>
+  <ul>
+    <%= for asset <- character_assets(@conn) do %>
+      <li><%= Map.get(asset, "item_id") %></li> 
+    <% end %>
+  </ul>
 <% else %>
   <p>
     Please sign in.

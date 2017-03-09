@@ -18,7 +18,7 @@ defmodule CorpHanger.SessionHelpers do
     |> CorpHanger.Character.corporation_name
   end
 
-  def corporation_img(conn, size \\ 64) do
+  def corporation_img(conn, size \\ 32) do
     current_character(conn)
     |> CorpHanger.Character.corporation_img(size)
   end

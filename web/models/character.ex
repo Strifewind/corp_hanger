@@ -24,7 +24,7 @@ defmodule CorpHanger.Character do
       where: t.access_id == ^access_token
   end
 
-  defp incorp_id(character) do
+  def corporation_id(character) do
     ESI.API.Character.corporation_history(character.eve_id)
     |> ESI.request!
     |> hd
@@ -32,24 +32,30 @@ defmodule CorpHanger.Character do
   end
     
   def portrait_url(character, size) do
-    "http://image.eveonline.com/Character/#{character.eve_id}_#{size}.jpg"
+    "//image.eveonline.com/Character/#{character.eve_id}_#{size}.jpg"
   end
 
   def corporation_name(character) do
-    character.incorp_id(character)
+    corporation_id(character)
     |> ESI.API.Corporation.corporation
     |> ESI.request!
     |> Map.get("corporation_name")
   end
 
   def corporation_img(character, size) do
-    "https://imageserver.eveonline.com/Corporation/#{character.incorp_id}_#{size}.png"
+    "//image.eveonline.com/Corporation/#{corporation_id(character)}_#{size}.png"
   end
   
   def assets(character) do
     ESI.API.Character.assets(character.eve_id, [token: character.access_token])
     |> ESI.stream!
     |> Enum.to_list
+  end
+
+  def define_id(items, id_key) do
+    ids = Enum.map(items, fn item -> Map.get(item, id_key) end)
+    ESI.API.Universe.create_names(ids: ids)
+    |> ESI.request!
   end
   
   @doc """
