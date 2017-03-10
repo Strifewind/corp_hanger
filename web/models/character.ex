@@ -50,8 +50,15 @@ defmodule CorpHanger.Character do
     ESI.API.Character.assets(character.eve_id, [token: character.access_token])
     |> ESI.stream!
     |> Enum.to_list
+    |> Enum.group_by(&Map.get(&1, "location_id" ))
+    |> Map.new
+    |> IO.inspect
   end
 
+  def asset_locations(character) do
+
+  end
+  
   def define_id(items, id_key) do
     ids = Enum.map(items, fn item -> Map.get(item, id_key) end)
     ESI.API.Universe.create_names(ids: ids)
