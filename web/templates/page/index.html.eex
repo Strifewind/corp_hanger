@@ -1,29 +1,14 @@
 <%= if signed_in?(@conn) do %>
   <%= img_tag portrait_url(@conn, 256) %>
-  <h2><%= current_character(@conn).name %></h2>
-  <h3><%= img_tag corporation_img(@conn) %></h3>
-  <h3><%= corporation_name(@conn) %></h3>
-  <%= for {location_id, assets} <- character_assets(@conn) do %>
-    <h2><%= location_id %></h2>
-    <table style="width:100%">
-      <tr>
-        <th> Item </th>
-        <th> Location </th>
-        <th> Location type </th>
-        <th> Quantity </th>
-        <th> Type id </th>
-      </tr>
-      <%= for asset <- assets do %>
-        <tr>
-          <td><%= Map.get(asset, "item_id") %></td>
-          <td><%= Map.get(asset, "location_id") %></td>
-          <td><%= Map.get(asset, "location_type") %></td>
-          <td> 0 </td>
-          <td><%= Map.get(asset, "type_id") %></td>
-        </tr>
-      <% end %>
-  <% end %>
-<% else %>
+    <h2><%= current_character(@conn).name %></h2>
+    <h3><%= img_tag corporation_img(@conn) %></h3>
+    <h3><%= corporation_name(@conn) %></h3>
+    <%= for asset <- asset_locations(@conn) do %>
+      <ul>
+        <li><a href="/locations/" + "#{asset}"><%= asset %></a></li>
+      </ul>
+    <%= end %> 
+  <% else %>
   <p>
     Please sign in.
   </p>

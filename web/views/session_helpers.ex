@@ -25,9 +25,14 @@ defmodule CorpHanger.SessionHelpers do
 
   def character_assets(conn) do
     current_character(conn)
-  |> CorpHanger.Character.assets
+    |> CorpHanger.Character.assets
   end
-  
+
+  def asset_locations(conn) do
+    current_character(conn)
+    |> CorpHanger.Character.asset_locations
+  end
+    
   @scopes ~w(
     characterAccountRead
     publicData

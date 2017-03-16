@@ -56,13 +56,21 @@ defmodule CorpHanger.Character do
   end
 
   def asset_locations(character) do
-
+    assets(character)
+    |> Map.keys
+    |> define_id
   end
   
   def define_id(items, id_key) do
     ids = Enum.map(items, fn item -> Map.get(item, id_key) end)
     ESI.API.Universe.create_names(ids: ids)
     |> ESI.request!
+  end
+
+  def define_id(id) do
+    ESI.API.Universe.create_names(ids: [id])
+    |> ESI.request!
+    |> hd
   end
   
   @doc """
