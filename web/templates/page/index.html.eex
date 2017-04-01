@@ -3,7 +3,7 @@
     <h2><%= current_character(@conn).name %></h2>
     <h3><%= img_tag corporation_img(@conn) %></h3>
     <h3><%= corporation_name(@conn) %></h3>
-    <%= for asset <- asset_locations(@conn) do %>
+    <%= for asset <- asset_location_names(@conn) do %>
       <ul>
         <li><a href="/locations/" + "#{asset}"><%= asset %></a></li>
       </ul>

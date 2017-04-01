@@ -50,23 +50,35 @@ defmodule CorpHanger.Character do
     ESI.API.Character.assets(character.eve_id, [token: character.access_token])
     |> ESI.stream!
     |> Enum.to_list
+    |> Enum.filter(&in_hanger?/1)
+#    |> IO.inspect
     |> Enum.group_by(&Map.get(&1, "location_id" ))
     |> Map.new
     |> IO.inspect
   end
 
-  def asset_locations(character) do
+  def asset_location_names(character) do
     assets(character)
     |> Map.keys
+    |> IO.inspect
     |> define_id
+    |> Enum.map(&Map.get(&1, "name"))
+#    |> IO.inspect
   end
-  
+
+  def in_hanger?(%{"location_flag" => "Hangar", "location_type" => "station"}), do: true
+  def in_hanger?(_), do: false
+    
   def define_id(items, id_key) do
     ids = Enum.map(items, fn item -> Map.get(item, id_key) end)
     ESI.API.Universe.create_names(ids: ids)
     |> ESI.request!
   end
 
+  def define_id(ids) when is_list(ids) do
+    ESI.API.Universe.create_names(ids: ids)
+    |> ESI.request!
+  end
   def define_id(id) do
     ESI.API.Universe.create_names(ids: [id])
     |> ESI.request!

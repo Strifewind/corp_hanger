@@ -28,9 +28,9 @@ defmodule CorpHanger.SessionHelpers do
     |> CorpHanger.Character.assets
   end
 
-  def asset_locations(conn) do
+  def asset_location_names(conn) do
     current_character(conn)
-    |> CorpHanger.Character.asset_locations
+    |> CorpHanger.Character.asset_location_names
   end
     
   @scopes ~w(
