@@ -3,8 +3,10 @@ defmodule CorpHanger.LocationController do
 
   def show(conn, %{"id" => id}) do
     IO.inspect(id)
-    location = %{id: id, name: CorpHanger.Character.define_id(String.to_integer(id))}
-    render(conn, "show.html", location: location)
+    location = CorpHanger.Character.define_id(String.to_integer(id))
+    |> IO.inspect
+    assets = CorpHanger.Location.assets(location, conn)
+    render(conn, "show.html", location: location, assets: assets, )
   end
 
 end

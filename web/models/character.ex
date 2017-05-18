@@ -57,12 +57,11 @@ defmodule CorpHanger.Character do
     |> IO.inspect
   end
 
-  def asset_location_names(character) do
+  def asset_locations(character) do
     assets(character)
     |> Map.keys
     |> IO.inspect
     |> define_id
-    |> Enum.map(&Map.get(&1, "name"))
 #    |> IO.inspect
   end
 
