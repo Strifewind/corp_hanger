@@ -1,8 +1,14 @@
 <%= if signed_in?(@conn) do %>
   <%= img_tag portrait_url(@conn, 256) %>
-  <h2><%= current_character(@conn).name %></h2>
-  <h3><%= corporation_name(@conn) %></h3>
-<% else %>
+    <h2><%= current_character(@conn).name %></h2>
+    <h3><%= img_tag corporation_img(@conn) %></h3>
+    <h3><%= corporation_name(@conn) %></h3>
+    <%= for location <- asset_locations(@conn) do %>
+      <ul>
+        <li><a href="/locations/<%= location["id"] %>"><%= location["name"] %></a></li>
+      </ul>
+    <%= end %> 
+  <% else %>
   <p>
     Please sign in.
   </p>

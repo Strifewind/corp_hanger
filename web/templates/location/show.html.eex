@@ -1,0 +1,20 @@
+<h2><%= @location["name"] %></h2>
+
+  <table style="width:100%">
+    <tr>
+      <th> Item </th>
+      <th> Location </th>
+      <th> Location type </th>
+      <th> Quantity </th>
+      <th> Type id </th>
+    </tr>
+  <%= for asset <- @assets do %>
+    <tr>
+      <td><%= Map.get(asset, "item_id") %></td>
+      <td><%= Map.get(asset, "location_id") %></td>
+      <td><%= Map.get(asset, "location_type") %></td>
+      <td> 0 </td>
+      <td><%= Map.get(asset, "type_id") %></td>
+    </tr>
+  <%= end %>
+  </table>

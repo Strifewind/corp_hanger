@@ -18,4 +18,32 @@ defmodule CorpHanger.SessionHelpers do
     |> CorpHanger.Character.corporation_name
   end
 
+  def corporation_img(conn, size \\ 32) do
+    current_character(conn)
+    |> CorpHanger.Character.corporation_img(size)
+  end
+
+  def character_assets(conn) do
+    current_character(conn)
+    |> CorpHanger.Character.assets
+  end
+
+  def asset_locations(conn) do
+    current_character(conn)
+    |> CorpHanger.Character.asset_locations
+  end
+    
+  @scopes ~w(
+    characterAccountRead
+    publicData
+    characterFittingsRead
+    characterAssetsRead
+    esi-assets.read_assets.v1
+    characterIndustryJobsRead
+  )
+  def scopes do
+    @scopes
+    |> Enum.join(" ")
+  end
+
 end

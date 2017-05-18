@@ -1,5 +1,6 @@
 defmodule CorpHanger.AuthController do
   use CorpHanger.Web, :controller
+  require IEx
 
   alias CorpHanger.UseCases.Authentication
 
